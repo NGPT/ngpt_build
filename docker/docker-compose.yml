@@ -1,0 +1,87 @@
+discuz_php7:
+    image: "registry.aliyuncs.com/buaassj/ngpt-php7-apache"
+    ports:
+        - "8080:80"
+    links:
+        - mysql:mysql
+        - pgsql:pgsql
+        - seed:seed_server
+        - redis:redis
+    environment:
+        - SEED_API=http://seed_server/frontend/web/index.php?r=
+        - SEED_PASSWORD=ngpt_2333
+    volumes:
+        - ./discuz-x32-php7:/var/www/html
+        - ./discuz_part/ngpt:/var/www/html/source/plugin/ngpt
+        - ./discuz_part/ngpt_tpl:/var/www/html/template/ngpt_tpl
+        - ./php.ini:/usr/local/etc/php/php.ini
+    log_driver: "none"
+
+seed:
+    image: "registry.aliyuncs.com/buaassj/ngpt-php7-apache"
+    ports:
+        - "8081:80"
+    environment:
+        - PGSQL_HOST=pgsql
+        - PGSQL_PORT=5432
+        - PGSQL_DBNAME=ngpt
+        - PGSQL_DBUSER=postgres
+        - PGSQL_DBPASSWORD=19941126
+        - MYSQL_HOST=mysql
+        - MYSQL_PORT=3306
+        - MYSQL_DBNAME=ngpt
+        - MYSQL_DBUSER=root
+        - MYSQL_DBPASSWORD=19941126
+        - REDIS_HOST=redis
+        - REDIS_PORT=6379
+        - REDIS_DBNAME=0
+    links:
+        - pgsql:pgsql
+        - mysql:mysql
+        - redis:redis
+    volumes:
+        - ./ngpt_seed:/var/www/html
+        - ./php.ini:/usr/local/etc/php/php.ini
+    expose:
+        - "80"
+    log_opt:
+        max-size: "1m"
+    log_opt:
+        max-file: "1"
+
+mysql:
+    image: "mariadb"
+    expose:
+        - "3306"
+    environment:
+        - MYSQL_ROOT_PASSWORD=19941126
+    volumes:
+        - ./data/mysql:/var/lib/mysql
+
+
+pgsql:
+    image: "daocloud.io/library/postgres"
+    expose:
+        - "5432"
+    environment:
+        - POSTGRES_PASSWORD=19941126
+        - POSTGRES_USER=postgres
+    volumes:
+        - ./data/pgsql:/var/lib/postgresql/data
+redis:
+    image: "redis"
+    expose:
+        - "6379"
+
+pma:
+    image: "registry.aliyuncs.com/buaassj/ngpt-php7-apache"
+    ports:
+        - "8085:80"
+    links:
+        - mysql:mysql
+    environment:
+        - PMA_HOST=mysql
+    volumes:
+        - ./pma:/var/www/html
+        - ./php.ini:/usr/local/etc/php/php.ini
+    log_driver: "none"
