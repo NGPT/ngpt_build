@@ -1,5 +1,5 @@
 discuz_php7:
-    image: "registry.aliyuncs.com/buaassj/ngpt-php7-apache"
+    image: "registry.aliyuncs.com/buaassj/ngpt_php7_apache"
     ports:
         - "8080:80"
     links:
@@ -18,7 +18,7 @@ discuz_php7:
     log_driver: "none"
 
 seed:
-    image: "registry.aliyuncs.com/buaassj/ngpt-php7-apache"
+    image: "registry.aliyuncs.com/buaassj/ngpt_php7_apache"
     ports:
         - "8081:80"
     environment:
@@ -74,7 +74,7 @@ redis:
         - "6379"
 
 pma:
-    image: "registry.aliyuncs.com/buaassj/ngpt-php7-apache"
+    image: "registry.aliyuncs.com/buaassj/ngpt_php7_apache"
     ports:
         - "8085:80"
     links:
