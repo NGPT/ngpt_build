@@ -35,14 +35,13 @@ cd -
 }
 
 clone https://github.com/KKRainbow/ngpt_discuz.git discuz_part
+clone https://github.com/KKRainbow/discuz-x32-php7.git discuz-x32-php7
+clone https://github.com/KKRainbow/ngpt_seed.git ngpt_seed
 
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/uc_server/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/uc_client/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/config
-
-clone https://github.com/KKRainbow/discuz-x32-php7.git discuz-x32-php7
-clone https://github.com/KKRainbow/ngpt_seed.git ngpt_seed
 
 ins_composer
  
