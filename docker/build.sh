@@ -35,6 +35,21 @@ fi
 cd -
 }
 
+function ins_pma() {
+    if [ ! -f ./pma.tar.gz ]; then
+        echo "正在下载pma"
+        curl https://files.phpmyadmin.net/phpMyAdmin/4.6.0/phpMyAdmin-4.6.0-all-languages.tar.gz -o pma.tar.gz
+    else
+        echo '检测到pma已经下载，如果要重新下载请删除pma.tar.gz'
+    fi
+    TMPDIR=$BASEDIR/pmatmp
+    mkdir -p $TMPDIR
+    tar xvf pma.tar.gz -C $TMPDIR
+    SUBDIR=$TMPDIR/`ls $TMPDIR`
+    mv $SUBDIR $BASEDIR/pma
+    rm -rf $TMPDIR
+}
+
 clone https://github.com/KKRainbow/ngpt_discuz.git discuz_part
 clone https://github.com/KKRainbow/discuz-x32-php7.git discuz-x32-php7
 clone https://github.com/KKRainbow/ngpt_seed.git ngpt_seed
@@ -51,6 +66,8 @@ $BASEDIR/ngpt_seed/init
 
 cp ./docker-compose.yml $BASEDIR/
 cp ./php.ini $BASEDIR/
+
+ins_pma
 
 cd $BASEDIR
 
