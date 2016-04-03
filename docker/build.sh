@@ -47,6 +47,7 @@ function ins_pma() {
     mkdir -p $TMPDIR
     tar xvf pma.tar.gz -C $TMPDIR
     SUBDIR=$TMPDIR/`ls $TMPDIR`
+    rm $BASEDIR/pma -rf
     mv $SUBDIR $BASEDIR/pma
     rm -rf $TMPDIR
     
