@@ -28,7 +28,8 @@ fi
 
 cd $BASEDIR/ngpt_seed
 if [ ! -f ./composer.lock ];then
-    $COMPOSER config secure-http false
+    $COMPOSER self-update 
+    $COMPOSER config -g secure-http false
 	$COMPOSER global require "fxp/composer-asset-plugin:~1.1.1" 
 	$COMPOSER install -vv
 fi
@@ -58,7 +59,6 @@ function ins_pma() {
 clone https://github.com/KKRainbow/ngpt_discuz.git discuz_part
 clone https://github.com/KKRainbow/discuz-x32-php7.git discuz-x32-php7
 clone https://github.com/KKRainbow/ngpt_seed.git ngpt_seed
-clone https://github.com/phpmyadmin/phpmyadmin.git pma
 
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/uc_server/data
