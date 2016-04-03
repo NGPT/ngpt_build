@@ -28,8 +28,9 @@ fi
 
 cd $BASEDIR/ngpt_seed
 if [ ! -f ./composer.lock ];then
+    $COMPOSER config secure-http false
 	$COMPOSER global require "fxp/composer-asset-plugin:~1.1.1" 
-	$COMPOSER install -vvv
+	$COMPOSER install -vv
 fi
 cd -
 }
@@ -48,6 +49,7 @@ ins_composer
 $BASEDIR/ngpt_seed/init
 
 cp ./docker-compose.yml $BASEDIR/
+cp ./php.ini $BASEDIR/
 
 cd $BASEDIR
 
