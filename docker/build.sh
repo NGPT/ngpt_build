@@ -48,6 +48,11 @@ function ins_pma() {
     SUBDIR=$TMPDIR/`ls $TMPDIR`
     mv $SUBDIR $BASEDIR/pma
     rm -rf $TMPDIR
+    
+    cd $BASEDIR/pma
+    cp config.sample.inc.php config.inc.php
+    sed -i 's/localhost/mysql/g' config.inc.php
+    cd -
 }
 
 clone https://github.com/KKRainbow/ngpt_discuz.git discuz_part
