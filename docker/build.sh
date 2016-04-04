@@ -65,6 +65,9 @@ sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/uc_server/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/uc_client/data
 sudo chmod a+rwx -R $BASEDIR/discuz-x32-php7/config
+sudo chmod a+rwx -R $BASEDIR/ngpt_seed/console/runtime
+sudo chmod a+rwx -R $BASEDIR/ngpt_seed/backend/runtime
+sudo chmod a+rwx -R $BASEDIR/ngpt_seed/frontend/runtime
 
 ins_composer
  
